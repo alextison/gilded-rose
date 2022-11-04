@@ -10,8 +10,8 @@ interface Item {
 }
 
 function updateQuality(item: Item) {
-    item.sellIn = ;
-    item.quality = ;
+    // item.sellIn = ;
+    // item.quality = ;
 }
 
 function isUnderZero(item: Item) {}
@@ -28,3 +28,5 @@ function isItemNameOfType(item: Item, awaitedName) {
 const Sulfuras = { type: "Sulfuras", sellIn: null, quality: 80, qualityUpgrade: null };
 let BackstagePasses = { type: "Backstage passes", sellIn: 10, quality: 10, qualityUpgrade: true };
 let AgedBrie = { type: "Aged Brie", sellIn: 10, quality: 10, qualityUpgrade: true };
+
+console.log(AgedBrie)
