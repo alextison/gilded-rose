@@ -8,13 +8,29 @@ interface Item {
 }
 
 function updateQuality(item: Item) {
-  // item.sellIn = ;
-  // item.quality = ;
+  if (!isItemNameOfType(item, "Sulfuras")) {
+    if (item.qualityUpgrade) {
+      item.quality++;
+      updateIfIsOverFifty(item);
+    } else {
+      item.quality--;
+      updateIfIsUnderZero(item);
+    }
+    item.sellIn--;
+  }
 }
 
-function isUnderZero(item: Item) {}
+function updateIfIsUnderZero(item: Item) {
+  if (item.quality < 0) {
+    item.quality = 0;
+  }
+}
 
-function isOverFifty(item: Item) {}
+function updateIfIsOverFifty(item: Item) {
+  if (item.quality > 50) {
+    item.quality = 50;
+  }
+}
 
 function isItemNameOfType(item: Item, awaitedName) {
   if (item.type == awaitedName) {
@@ -29,12 +45,14 @@ const Sulfuras = {
   quality: 80,
   qualityUpgrade: null,
 };
+
 let BackstagePasses = {
   type: "Backstage passes",
   sellIn: 10,
   quality: 10,
   qualityUpgrade: true,
 };
+
 let AgedBrie = {
   type: "Aged Brie",
   sellIn: 10,
