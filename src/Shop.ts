@@ -1,13 +1,40 @@
-export default class Shop {}
+export default class Shop {
+  items: Item[];
+
+  constructor(items = [] as Item[]) {}
+  
+  Sulfuras = {
+    type: "Sulfuras",
+    sellIn: undefined,
+    quality: 80,
+    qualityUpgrade: undefined,
+  };
+
+  BackstagePasses = {
+    type: "Backstage passes",
+    sellIn: 10,
+    quality: 10,
+    qualityUpgrade: true,
+  };
+
+  AgedBrie = {
+    type: "Aged Brie",
+    sellIn: 10,
+    quality: 10,
+    qualityUpgrade: true,
+  };
+
+  shopItems = [this.Sulfuras, this.BackstagePasses, this.AgedBrie];
+}
 
 interface Item {
   type: string;
-  sellIn: number | null;
+  sellIn: number | undefined;
   quality: number;
-  qualityUpgrade: boolean | null;
+  qualityUpgrade: boolean | undefined;
 }
 
-function updateQuality(item: Item) {
+export function updateQuality(item: Item) {
   if (!isItemNameOfType(item, "Sulfuras")) {
     if (item.qualityUpgrade) {
       item.quality++;
@@ -18,6 +45,7 @@ function updateQuality(item: Item) {
     }
     item.sellIn--;
   }
+  return item;
 }
 
 function updateIfIsUnderZero(item: Item) {
@@ -38,24 +66,3 @@ function isItemNameOfType(item: Item, awaitedName) {
   }
   return false;
 }
-
-const Sulfuras = {
-  type: "Sulfuras",
-  sellIn: null,
-  quality: 80,
-  qualityUpgrade: null,
-};
-
-let BackstagePasses = {
-  type: "Backstage passes",
-  sellIn: 10,
-  quality: 10,
-  qualityUpgrade: true,
-};
-
-let AgedBrie = {
-  type: "Aged Brie",
-  sellIn: 10,
-  quality: 10,
-  qualityUpgrade: true,
-};
