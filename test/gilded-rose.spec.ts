@@ -12,14 +12,18 @@ describe("Gilded Rose", () => {
       type: "Sulfuras",
       sellIn: undefined,
       quality: 80,
-      qualityUpgrade: undefined,
+      qualityUpgrade: {
+        isQualityUpgrade: undefined,
+      },
     };
 
     let updatedSulfuras = {
       type: "Sulfuras",
       sellIn: undefined,
       quality: 80,
-      qualityUpgrade: undefined,
+      qualityUpgrade: {
+        isQualityUpgrade: undefined,
+      },
     };
 
     updateQuality(updatedSulfuras);
@@ -31,14 +35,18 @@ describe("Gilded Rose", () => {
       type: "Aged Brie",
       sellIn: 10,
       quality: 10,
-      qualityUpgrade: true,
+      qualityUpgrade: {
+        isQualityUpgrade: true,
+      },
     };
 
     let updatedAgedBrie = {
       type: "Aged Brie",
       sellIn: 10,
       quality: 10,
-      qualityUpgrade: true,
+      qualityUpgrade: {
+        isQualityUpgrade: true,
+      },
     };
 
     updateQuality(updatedAgedBrie);
@@ -46,18 +54,27 @@ describe("Gilded Rose", () => {
   });
 
   it("Backstage Passes must upgrade quality", () => {
+    const map: Map<number, number> = new Map();
+    map.set(5, 3);
+    map.set(10, 2);
     const backstagePasses = {
       type: "Backstage passes",
       sellIn: 10,
       quality: 10,
-      qualityUpgrade: true,
+      qualityUpgrade: {
+        isQualityUpgrade: true,
+        templateUpgrade: map,
+      },
     };
 
     let updatedbackstagePasses = {
-      type: "Aged Brie",
+      type: "Backstage passes",
       sellIn: 10,
       quality: 10,
-      qualityUpgrade: true,
+      qualityUpgrade: {
+        isQualityUpgrade: true,
+        templateUpgrade: map,
+      },
     };
 
     updateQuality(updatedbackstagePasses);

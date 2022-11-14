@@ -2,26 +2,32 @@ export default class Shop {
   items: Item[];
 
   constructor(items = [] as Item[]) {}
-  
+
   Sulfuras = {
     type: "Sulfuras",
     sellIn: undefined,
     quality: 80,
-    qualityUpgrade: undefined,
+    qualityUpgrade: {
+      isQualityUpgrade: undefined,
+    },
   };
 
   BackstagePasses = {
     type: "Backstage passes",
     sellIn: 10,
     quality: 10,
-    qualityUpgrade: true,
+    qualityUpgrade: {
+      isQualityUpgrade: true,
+    },
   };
 
   AgedBrie = {
     type: "Aged Brie",
     sellIn: 10,
     quality: 10,
-    qualityUpgrade: true,
+    qualityUpgrade: {
+      isQualityUpgrade: true,
+    },
   };
 
   shopItems = [this.Sulfuras, this.BackstagePasses, this.AgedBrie];
@@ -31,21 +37,31 @@ interface Item {
   type: string;
   sellIn: number | undefined;
   quality: number;
-  qualityUpgrade: boolean | undefined;
+  qualityUpgrade: {
+    isQualityUpgrade: boolean | undefined;
+    templateUpgrade?: Map<number, number>;
+  };
 }
 
 export function updateQuality(item: Item) {
   if (!isItemNameOfType(item, "Sulfuras")) {
-    if (item.qualityUpgrade) {
-      item.quality++;
-      updateIfIsOverFifty(item);
-    } else {
-      item.quality--;
-      updateIfIsUnderZero(item);
-    }
+    updateQualityOfItem(item);
     item.sellIn--;
   }
   return item;
+}
+
+function updateQualityOfItem(item: Item) {
+  if (item.qualityUpgrade.isQualityUpgrade) {
+    if (item.qualityUpgrade.templateUpgrade) {
+      // Iterate over the map
+    }
+    item.quality++;
+    updateIfIsOverFifty(item);
+  } else {
+    item.quality--;
+    updateIfIsUnderZero(item);
+  }
 }
 
 function updateIfIsUnderZero(item: Item) {
