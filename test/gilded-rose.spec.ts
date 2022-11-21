@@ -15,6 +15,7 @@ describe("Gilded Rose", () => {
       qualityUpgrade: {
         isQualityUpgrade: undefined,
       },
+      isConjured: false,
     };
 
     let updatedSulfuras = {
@@ -24,6 +25,7 @@ describe("Gilded Rose", () => {
       qualityUpgrade: {
         isQualityUpgrade: undefined,
       },
+      isConjured: false,
     };
 
     updateQuality(updatedSulfuras);
@@ -38,6 +40,7 @@ describe("Gilded Rose", () => {
       qualityUpgrade: {
         isQualityUpgrade: true,
       },
+      isConjured: false,
     };
 
     let updatedAgedBrie = {
@@ -47,24 +50,26 @@ describe("Gilded Rose", () => {
       qualityUpgrade: {
         isQualityUpgrade: true,
       },
+      isConjured: false,
     };
 
     updateQuality(updatedAgedBrie);
     expect(updatedAgedBrie).not.toBe(agedBrie);
   });
 
-  it("Backstage Passes must upgrade quality", () => {
+  it("Backstage Passes must upgrade quality with template", () => {
     const map: Map<number, number> = new Map();
-    map.set(5, 3);
     map.set(10, 2);
+    map.set(5, 3);
     const backstagePasses = {
       type: "Backstage passes",
-      sellIn: 10,
-      quality: 10,
+      sellIn: 9,
+      quality: 12,
       qualityUpgrade: {
         isQualityUpgrade: true,
         templateUpgrade: map,
       },
+      isConjured: false,
     };
 
     let updatedbackstagePasses = {
@@ -75,9 +80,10 @@ describe("Gilded Rose", () => {
         isQualityUpgrade: true,
         templateUpgrade: map,
       },
+      isConjured: false,
     };
 
     updateQuality(updatedbackstagePasses);
-    expect(updatedbackstagePasses).not.toBe(backstagePasses);
+    expect(updatedbackstagePasses).toStrictEqual(backstagePasses);
   });
 });

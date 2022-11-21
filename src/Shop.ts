@@ -10,6 +10,7 @@ export default class Shop {
     qualityUpgrade: {
       isQualityUpgrade: undefined,
     },
+    isConjured: false,
   };
 
   BackstagePasses = {
@@ -19,6 +20,7 @@ export default class Shop {
     qualityUpgrade: {
       isQualityUpgrade: true,
     },
+    isConjured: false,
   };
 
   AgedBrie = {
@@ -28,6 +30,7 @@ export default class Shop {
     qualityUpgrade: {
       isQualityUpgrade: true,
     },
+    isConjured: false,
   };
 
   shopItems = [this.Sulfuras, this.BackstagePasses, this.AgedBrie];
@@ -41,6 +44,7 @@ interface Item {
     isQualityUpgrade: boolean | undefined;
     templateUpgrade?: Map<number, number>;
   };
+  isConjured: boolean;
 }
 
 export function updateQuality(item: Item) {
@@ -53,15 +57,31 @@ export function updateQuality(item: Item) {
 
 function updateQualityOfItem(item: Item) {
   if (item.qualityUpgrade.isQualityUpgrade) {
-    if (item.qualityUpgrade.templateUpgrade) {
-      // Iterate over the map
+    let templateUpgrade = item.qualityUpgrade?.templateUpgrade;
+    if (templateUpgrade) {
+      determinateUpgrade(item, templateUpgrade);
+    } else {
+      item.quality++;
     }
-    item.quality++;
     updateIfIsOverFifty(item);
   } else {
     item.quality--;
     updateIfIsUnderZero(item);
   }
+}
+
+function determinateUpgrade(item, templateUpgrade) {
+  let templateClosest = 255;
+  let addValue = 0;
+  templateUpgrade.forEach((key: number, value: number) => {
+    let calculateDays = item.sellIn - value;
+    if (calculateDays < templateClosest) {
+      templateClosest = calculateDays;
+      addValue = key;
+    }
+  });
+  item.quality = item.quality + addValue;
+  return item;
 }
 
 function updateIfIsUnderZero(item: Item) {
@@ -81,4 +101,9 @@ function isItemNameOfType(item: Item, awaitedName) {
     return true;
   }
   return false;
+}
+
+export function exportShopItemsToJSON(shop: Shop) {
+  var jsonShopItems = JSON.stringify(shop.shopItems);
+  return jsonShopItems;
 }
