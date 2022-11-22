@@ -12,20 +12,12 @@ describe("Gilded Rose", () => {
       type: "Sulfuras",
       sellIn: undefined,
       quality: 80,
-      qualityUpgrade: {
-        isQualityUpgrade: undefined,
-      },
-      isConjured: false,
     };
 
     let updatedSulfuras = {
       type: "Sulfuras",
       sellIn: undefined,
       quality: 80,
-      qualityUpgrade: {
-        isQualityUpgrade: undefined,
-      },
-      isConjured: false,
     };
 
     updateQuality(updatedSulfuras);
@@ -37,20 +29,12 @@ describe("Gilded Rose", () => {
       type: "Aged Brie",
       sellIn: 10,
       quality: 10,
-      qualityUpgrade: {
-        isQualityUpgrade: true,
-      },
-      isConjured: false,
     };
 
     let updatedAgedBrie = {
       type: "Aged Brie",
       sellIn: 10,
       quality: 10,
-      qualityUpgrade: {
-        isQualityUpgrade: true,
-      },
-      isConjured: false,
     };
 
     updateQuality(updatedAgedBrie);
@@ -65,22 +49,12 @@ describe("Gilded Rose", () => {
       type: "Backstage passes",
       sellIn: 9,
       quality: 12,
-      qualityUpgrade: {
-        isQualityUpgrade: true,
-        templateUpgrade: map,
-      },
-      isConjured: false,
     };
 
     let updatedbackstagePasses = {
       type: "Backstage passes",
       sellIn: 10,
       quality: 10,
-      qualityUpgrade: {
-        isQualityUpgrade: true,
-        templateUpgrade: map,
-      },
-      isConjured: false,
     };
 
     updateQuality(updatedbackstagePasses);

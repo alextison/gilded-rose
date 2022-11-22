@@ -7,14 +7,6 @@ Convert Shop.ts to JavaScript with `tsc Shop.ts`.<br />
 Then execute Shop.js with `node Shop.js`.<br />
 Execute the tests with `npm test`.<br />
 
-TP6:
-
-- Implémenter les items de type Conjured
-
-TP7:
-
-- Séparer la persistance des items du reste du système grâce à l'inversion de contrôle
-- Implémenter une interface de persistance (CSV, JSON, BDD, etc...)
-
 TP8:
-- Implémenter la valeur d'un produit & la vente d'article
+
+- Implémenter la vente d'article
