@@ -1,4 +1,8 @@
-import { updateQuality } from "../src/Shop";
+import { AgingItem } from "../src/Items/AgingItem";
+import { ConjuredItem } from "../src/Items/ConjuredItem";
+import { EventItem } from "../src/Items/EventItem";
+import { GenericItem } from "../src/Items/GenericItem";
+import { LegendaryItem } from "../src/Items/LegendaryItem";
 import Shop from "../src/Shop";
 
 describe("Gilded Rose", () => {
