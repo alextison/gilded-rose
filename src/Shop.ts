@@ -2,7 +2,9 @@ import ItemsRepository from "./ItemsRepository";
 import FileItemsRepository from "./ItemsRepository/FileItemsRepository";
 export default class Shop {
   balance = 0;
-  constructor(Repository: ItemsRepository) {}
+  constructor(Repository: ItemsRepository) {
+    this.repository = Repository;
+  }
 
   private repository = new FileItemsRepository();
 

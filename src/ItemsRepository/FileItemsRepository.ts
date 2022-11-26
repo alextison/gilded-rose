@@ -5,11 +5,10 @@ export default class FileItemsRepository implements ItemsRepository {
   items: Item[];
   constructor(items = [] as Item[]) {}
 
-  fs = require("fs");
-
   GetInventory(): Item[] {
+    let fs = require("fs");
     let itemsInventory = [];
-    this.fs.readFile("items.txt", function (err, data) {
+    fs.readFile("items.txt", function (err, data) {
       itemsInventory = data.toString();
     });
 
@@ -23,11 +22,8 @@ export default class FileItemsRepository implements ItemsRepository {
     );
   }
 
-  SaveInventory(): void {
-    this.fs.writeFile(
-      "items.txt",
-      JSON.stringify(this.items),
-      function (err) {}
-    );
+  SaveInventory(items: Item[]): void {
+    let fs = require("fs");
+    fs.writeFile("items.txt", JSON.stringify(this.items), function (err) {});
   }
 }
