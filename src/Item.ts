@@ -1,6 +1,6 @@
 export default abstract class Item {
   constructor(
-    type: string,
+    public type: string,
     protected sellIn: number | undefined,
     protected quality: number,
     protected basePrice: number
@@ -23,6 +23,14 @@ export default abstract class Item {
   GetValue(basePrice: number, quality: number) {
     let value = basePrice + quality * 10;
     return value;
+  }
+
+  getQuality() {
+    return this.quality;
+  }
+
+  removeItem(item) {
+    
   }
 
   //   qualityUpgrade: {

@@ -3,45 +3,30 @@ import { ConjuredItem } from "../src/Items/ConjuredItem";
 import { EventItem } from "../src/Items/EventItem";
 import { GenericItem } from "../src/Items/GenericItem";
 import { LegendaryItem } from "../src/Items/LegendaryItem";
+import ItemsRepository from "../src/ItemsRepository";
 import Shop from "../src/Shop";
 
 describe("Gilded Rose", () => {
   it("Should build", () => {
-    let shop = new Shop();
+    var ItemsRepository = new ItemsRepository();
+    var shop = new Shop(ItemsRepository);
+
     expect(shop).toBeInstanceOf(Shop);
   });
 
   it("Sulfuras must not change", () => {
-    const sulfuras = {
-      type: "Sulfuras",
-      sellIn: undefined,
-      quality: 80,
-    };
+    const sulfuras = new LegendaryItem("Sulfuras", undefined, 80, 80);
+    let updatedSulfuras = new LegendaryItem("Sulfuras", undefined, 80, 80);
+    sulfuras.update();
 
-    let updatedSulfuras = {
-      type: "Sulfuras",
-      sellIn: undefined,
-      quality: 80,
-    };
-
-    updateQuality(updatedSulfuras);
     expect(updatedSulfuras).toStrictEqual(sulfuras);
   });
 
   it("Aged Brie must upgrade quality", () => {
-    const agedBrie = {
-      type: "Aged Brie",
-      sellIn: 10,
-      quality: 10,
-    };
+    const agedBrie = new AgingItem("Aged Brie", 10, 10, 10);
+    let updatedAgedBrie = new AgingItem("Aged Brie", 10, 10, 10);
 
-    let updatedAgedBrie = {
-      type: "Aged Brie",
-      sellIn: 10,
-      quality: 10,
-    };
-
-    updateQuality(updatedAgedBrie);
+    updatedAgedBrie.update();
     expect(updatedAgedBrie).not.toBe(agedBrie);
   });
 

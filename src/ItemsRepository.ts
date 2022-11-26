@@ -1,9 +1,7 @@
 import Item from "./Item";
 
-export default class ItemsRepository {
-  items: Item[];
-  constructor(items = [] as Item[]) {}
-  GetInventory() {}
-  FindItem(type: string, quality: number) {}
-  SaveInventory() {}
+export default interface ItemsRepository {
+  GetInventory(): Item[];
+  FindItem(type: string, quality: number): Item;
+  SaveInventory(items: Item[]): void;
 }
