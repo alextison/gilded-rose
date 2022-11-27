@@ -12,9 +12,9 @@ export default class Shop {
 
   SellItem(type: string, quality: number) {
     let item = this.repository.FindItem(type, quality);
-    let value = item.getQuality();
+    let value = item.GetQuality();
     this.balance += value;
-    this.repository.removeItem(item);
+    this.repository.RemoveItem(item);
   }
 
   getBalance(): any {

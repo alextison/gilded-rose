@@ -9,5 +9,6 @@ export class LegendaryItem extends Item {
   ) {
     super(type, sellIn, quality, basePrice);
   }
-  update() {}
+
+  Update() {}
 }

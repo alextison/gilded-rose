@@ -10,7 +10,7 @@ export class AgingItem extends Item {
     super(type, sellIn, quality, basePrice);
   }
 
-  update() {
+  Update() {
     if (this.sellIn >= 0) {
       this.quality += 3;
     } else if (this.sellIn > 5) {
@@ -18,8 +18,8 @@ export class AgingItem extends Item {
     } else if (this.sellIn > 10) {
       this.quality += 1;
     }
-    this.updateIfIsOverFifty(this);
-    this.updateIfIsUnderZero(this);
+    this.UpdateIfIsOverFifty(this);
+    this.UpdateIfIsUnderZero(this);
     if (this.sellIn !== 0) {
       this.sellIn--;
     }

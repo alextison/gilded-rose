@@ -10,10 +10,10 @@ export class ConjuredItem extends Item {
     super(type, sellIn, quality, basePrice);
   }
 
-  update() {
+  Update() {
     this.quality = this.quality - 2;
-    this.updateIfIsOverFifty(this);
-    this.updateIfIsUnderZero(this);
+    this.UpdateIfIsOverFifty(this);
+    this.UpdateIfIsUnderZero(this);
     if (this.sellIn !== 0) {
       this.sellIn--;
     }

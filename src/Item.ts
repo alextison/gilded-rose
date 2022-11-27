@@ -6,15 +6,15 @@ export default abstract class Item {
     protected basePrice: number
   ) {}
 
-  protected update() {}
+  protected Update() {}
 
-  protected updateIfIsUnderZero(item: Item) {
+  protected UpdateIfIsUnderZero(item: Item) {
     if (item.quality < 0) {
       item.quality = 0;
     }
   }
 
-  protected updateIfIsOverFifty(item: Item) {
+  protected UpdateIfIsOverFifty(item: Item) {
     if (item.quality > 50) {
       item.quality = 50;
     }
@@ -25,16 +25,7 @@ export default abstract class Item {
     return value;
   }
 
-  getQuality() {
+  GetQuality() {
     return this.quality;
   }
-
-  removeItem(item) {
-    
-  }
-
-  //   qualityUpgrade: {
-  //     isQualityUpgrade: boolean | undefined;
-  //     templateUpgrade?: Map<number, number>;
-  //   };
 }
